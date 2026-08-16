@@ -133,4 +133,17 @@ public class Main {
 
         System.out.println("Book updated successfully.");
     }
+    public static void deleteBook() {
+        System.out.print("Enter the code of the book to delete: ");
+        String code = sc.nextLine();
+        Book b = searchBook(code);
+
+        if (b == null) {
+            System.out.println("Book not found.");
+            return;
+        }
+
+        books.remove(b);
+        System.out.println("Book deleted successfully.");
+    }
 }
