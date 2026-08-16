@@ -92,4 +92,14 @@ public class Main {
         books.add(newBook);
         System.out.println("Book created successfully.");
     }
+    public static void listBooks() {
+        System.out.println("--- Book list ---");
+        if (books.isEmpty()) {
+            System.out.println("No books registered.");
+        } else {
+            for (Book b : books) {
+                System.out.println(b);
+            }
+        }
+    }
 }
