@@ -45,4 +45,27 @@ public class Main {
         }
         return null;
     }
+ public static void updateClient() {
+        System.out.print("Enter the ID of the client to update: ");
+        String id = sc.nextLine();
+        Client c = searchClient(id);
+
+        if (c == null) {
+            System.out.println("Client not found.");
+            return;
+        }
+
+        System.out.print("New name (" + c.getName() + "): ");
+        String name = sc.nextLine();
+        System.out.print("New phone (" + c.getPhone() + "): ");
+        String phone = sc.nextLine();
+        System.out.print("New email (" + c.getEmail() + "): ");
+        String email = sc.nextLine();
+
+        c.setName(name);
+        c.setPhone(phone);
+        c.setEmail(email);
+
+        System.out.println("Client updated successfully.");
+    }   
 }
