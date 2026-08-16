@@ -1,34 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.taller1.biblioteca.git;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static ArrayList<Client> clientes = new ArrayList<>();
+    static ArrayList<Client> clients = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
+
     }
-    public static void crearCliente(){
-        System.out.println("***Crear nuevo cliente***");
+
+    public static void createClient() {
+        System.out.println("--- Create new client ---");
         System.out.print("ID: ");
         String id = sc.nextLine();
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
-        System.out.print("Telefono: ");
-        String telefono = sc.nextLine();
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        System.out.print("Phone: ");
+        String phone = sc.nextLine();
         System.out.print("Email: ");
         String email = sc.nextLine();
-        
-        Client nuevo = new CCliente(id, nombre, telefono, email);
-        clientes.add(nuevo);
-        
-        System.out.println("Cliente creado exitosamente ");
-        
+
+        Client newClient = new Client(id, name, phone, email);
+        clients.add(newClient);
+
+        System.out.println("Client created successfully.");
+    }
+    public static void listClients() {
+        System.out.println("--- Client list ---");
+        if (clients.isEmpty()) {
+            System.out.println("No clients registered.");
+        } else {
+            for (Client c : clients) {
+                System.out.println(c);
+            }
+        }
     }
 }
