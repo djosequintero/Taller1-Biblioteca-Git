@@ -110,4 +110,27 @@ public class Main {
         }
         return null;
     }
+    public static void updateBook() {
+        System.out.print("Enter the code of the book to update: ");
+        String code = sc.nextLine();
+        Book b = searchBook(code);
+
+        if (b == null) {
+            System.out.println("Book not found.");
+            return;
+        }
+
+        System.out.print("New title (" + b.getTitle() + "): ");
+        String title = sc.nextLine();
+        System.out.print("New year (" + b.getYear() + "): ");
+        int year = Integer.parseInt(sc.nextLine());
+        System.out.print("New author (" + b.getAuthor() + "): ");
+        String author = sc.nextLine();
+
+        b.setTitle(title);
+        b.setYear(year);
+        b.setAuthor(author);
+
+        System.out.println("Book updated successfully.");
+    }
 }
