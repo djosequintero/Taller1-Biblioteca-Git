@@ -2,10 +2,12 @@ package com.mycompany.taller1.biblioteca.git;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
     static ArrayList<Client> clients = new ArrayList<>();
     static ArrayList<Book> books = new ArrayList<>();
+    static ArrayList<Loan> loans = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -145,5 +147,70 @@ public class Main {
 
         books.remove(b);
         System.out.println("Book deleted successfully.");
+    }
+        public static void createLoan() {
+        System.out.println("--- Register new loan ---");
+        System.out.print("Loan ID: ");
+        String id = sc.nextLine();
+        System.out.print("Client ID: ");
+        String clientId = sc.nextLine();
+        Client c = searchClient(clientId);
+
+        if (c == null) {
+            System.out.println("Client not found.");
+            return;
+        }
+
+        System.out.print("Book code: ");
+        String bookCode = sc.nextLine();
+        Book b = searchBook(bookCode);
+
+        if (b == null) {
+            System.out.println("Book not found.");
+            return;
+        }
+
+        if (!b.isAvailable()) {
+            System.out.println("Book is not available.");
+            return;
+        }
+
+        Loan newLoan = new Loan(id, c, b, LocalDate.now());
+        loans.add(newLoan);
+        b.setAvailable(false);
+
+        System.out.println("Loan registered successfully.");
+    }
+            public static void returnLoan() {
+        System.out.print("Enter the loan ID to return: ");
+        String id = sc.nextLine();
+
+        for (Loan l : loans) {
+            if (l.getId().equals(id)) {
+                if (l.getStatus().equals("RETURNED")) {
+                    System.out.println("This loan was already returned.");
+                    return;
+                }
+                l.setStatus("RETURNED");
+                l.getBook().setAvailable(true);
+                System.out.println("Loan returned successfully.");
+                return;
+            }
+        }
+
+        System.out.println("Loan not found.");
+    }
+      public static void listLoans() {
+        System.out.println("--- Active loans ---");
+        boolean hasActive = false;
+        for (Loan l : loans) {
+            if (l.getStatus().equals("ACTIVE")) {
+                System.out.println(l);
+                hasActive = true;
+            }
+        }
+        if (!hasActive) {
+            System.out.println("No active loans.");
+        }
     }
 }
