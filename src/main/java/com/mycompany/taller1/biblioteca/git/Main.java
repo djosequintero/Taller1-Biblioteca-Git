@@ -181,4 +181,23 @@ public class Main {
 
         System.out.println("Loan registered successfully.");
     }
+            public static void returnLoan() {
+        System.out.print("Enter the loan ID to return: ");
+        String id = sc.nextLine();
+
+        for (Loan l : loans) {
+            if (l.getId().equals(id)) {
+                if (l.getStatus().equals("RETURNED")) {
+                    System.out.println("This loan was already returned.");
+                    return;
+                }
+                l.setStatus("RETURNED");
+                l.getBook().setAvailable(true);
+                System.out.println("Loan returned successfully.");
+                return;
+            }
+        }
+
+        System.out.println("Loan not found.");
+    }
 }
