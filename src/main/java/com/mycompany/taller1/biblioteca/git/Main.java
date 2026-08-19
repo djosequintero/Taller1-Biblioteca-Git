@@ -10,7 +10,41 @@ public class Main {
     static ArrayList<Loan> loans = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
+        int option;
+        do {
+            System.out.println("\n===== LIBRARY MANAGEMENT SYSTEM =====");
+            System.out.println("1. Create client");
+            System.out.println("2. List clients");
+            System.out.println("3. Update client");
+            System.out.println("4. Delete client");
+            System.out.println("5. Create book");
+            System.out.println("6. List books");
+            System.out.println("7. Update book");
+            System.out.println("8. Delete book");
+            System.out.println("9. Register loan");
+            System.out.println("10. Return loan");
+            System.out.println("11. List active loans");
+            System.out.println("0. Exit");
+            System.out.print("Select an option: ");
+            option = Integer.parseInt(sc.nextLine());
+
+            switch (option) {
+                case 1 -> createClient();
+                case 2 -> listClients();
+                case 3 -> updateClient();
+                case 4 -> deleteClient();
+                case 5 -> createBook();
+                case 6 -> listBooks();
+                case 7 -> updateBook();
+                case 8 -> deleteBook();
+                case 9 -> createLoan();
+                case 10 -> returnLoan();
+                case 11 -> listLoans();
+                case 0 -> System.out.println("Goodbye!");
+                default -> System.out.println("Invalid option.");
+            }
+        } while (option != 0);
     }
 
     public static void createClient() {
